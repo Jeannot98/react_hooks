@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.ul{
+  text-decoration: none;
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

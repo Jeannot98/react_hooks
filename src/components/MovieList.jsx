@@ -1,31 +1,20 @@
-import React, { useState } from 'react'
+//import React, { useState } from 'react'
 //import { AiOutlineSearch } from 'react-icons/ai'
 import MovieCard from './MovieCard';
+import { Link } from 'react-router-dom';
+import {movies} from '../List'
+//import { Link } from 'react-router-dom';
+
+
 
 const MovieList = () => {
+    
 
-    const [image, setImage] = useState('');
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [rate, setRate] = useState(0)
-    const [movieList, setMovielist] = useState([]);
+    // const [search, setSearch] = useState('');
 
-    const [search, setSearch] = useState('');
 
-    function handleSubmit(e) {
-        e.preventDefault()
 
-        setMovielist(currentList => {
-            return [
-                ...currentList, { id: crypto.getRandomValues, image: image, title: title, description: description, rate: rate }
-            ]
-        })
-
-        setDescription("")
-        setImage("")
-        setTitle("")
-        setRate(0)
-    }
+    //let navigate = useNavigate()
 
     /*function searchMovie(title) {
 
@@ -43,26 +32,18 @@ const MovieList = () => {
 
 
     return (
-        <div style={{display:"flex", flexDirection:"column", gap:10}}>
-            <div>
-                <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder='research' />
-            </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems:"center" }}>
+            
 
-            <form onSubmit={handleSubmit} action="" style={{display:"flex", justifyContent:"space-around"}}>
-                <input type="url" value={image} onChange={e => setImage(e.target.value)} placeholder='Image URL' />
-                <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder='Title' />
-                <input type="text" value={description} onChange={e => setDescription(e.target.value)} placeholder='Description' />
-                <input type="number" value={rate} onChange={e => setRate(e.target.value)} placeholder='Rate' />
-                <button>Add</button>
-            </form>
-           
+            <h1>Movies list</h1>
 
-
-            {movieList.map(movie => (
-                <div style={{ display: "grid" }}>
-                    <MovieCard title={movie.title} description={movie.description} rate={movie.rate} />
-                </div>
+           <div  style={{ display: "grid",gridTemplateColumns:"repeat(2, 1fr)" }}>
+           {movies.map((movie) => (
+                <Link key={movie.id} style={{textDecoration:"none", color:"black"}} to={`/movies/${movie.id}`}><MovieCard title={movie.title} description={movie.description} rate={movie.rate} image={movie.image}/></Link>
             ))}
+           </div>
+
+
 
         </div>
     )
